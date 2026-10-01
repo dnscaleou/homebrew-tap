@@ -11,6 +11,19 @@ The formula installs the official release binary for Apple Silicon or Intel
 macOS, or ARM64/AMD64 Linux. Go is not required. Archive SHA-256 checksums are
 pinned in the formula. Bash, Zsh, and Fish completions are installed automatically.
 
+## Repositories and releases
+
+| Resource | Link |
+| --- | --- |
+| CLI source and issues | [dnscaleou/dnscale-cli](https://github.com/dnscaleou/dnscale-cli) |
+| Version 1.0.0 downloads | [Release archives and notes](https://github.com/dnscaleou/dnscale-cli/releases/tag/v1.0.0) |
+| All releases | [Release history](https://github.com/dnscaleou/dnscale-cli/releases) |
+| Homebrew package | [dnscaleou/homebrew-tap](https://github.com/dnscaleou/homebrew-tap) |
+| Homebrew formula | [Formula/dnscale.rb](https://github.com/dnscaleou/homebrew-tap/blob/main/Formula/dnscale.rb) |
+
+Current package: **1.0.0**. The [release checksum manifest](https://github.com/dnscaleou/dnscale-cli/releases/download/v1.0.0/checksums.txt)
+covers all five platform archives, including Windows downloads.
+
 ## Upgrade or uninstall
 
 ```sh
@@ -19,8 +32,8 @@ brew upgrade dnscale
 brew uninstall dnscale
 ```
 
-Uninstalling the CLI does not revoke API keys. Use `dnscale auth logout
---profile NAME` before uninstalling to remove a saved profile's keychain
+Uninstalling the CLI does not revoke API keys. Use
+`dnscale auth logout --profile NAME` before uninstalling to remove a saved profile's keychain
 credential, and revoke keys in the DNScale dashboard when they are no longer needed.
 
 ## First commands
