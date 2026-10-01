@@ -1,0 +1,35 @@
+name: Test Homebrew formula
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  install:
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-24.04, ubuntu-24.04-arm, macos-14, macos-15-intel]
+    runs-on: ${{ matrix.os }}
+    env:
+      HOMEBREW_NO_ANALYTICS: 1
+      HOMEBREW_NO_AUTO_UPDATE: 1
+      HOMEBREW_NO_INSTALL_CLEANUP: 1
+    steps:
+      - name: Set up Homebrew and check out tap
+        id: homebrew
+        uses: Homebrew/actions/setup-homebrew@1f8e202ffddf94def7f42f6fa3a482e821489f9c # 2026.07.10.1
+        with:
+          stable: true
+      - name: Check formula style
+        working-directory: ${{ steps.homebrew.outputs.repository-path }}
+        run: brew style Formula/dnscale.rb
+      - name: Install and test
+        run: |
+          brew install dnscaleou/tap/dnscale
+          brew test dnscaleou/tap/dnscale
+          brew audit --strict dnscaleou/tap/dnscale
