@@ -30,13 +30,13 @@ class Dnscale < Formula
     bin.install "dnscale"
     doc.install "README.md", "QUICKSTART.md", "CHANGELOG.md", "LICENSE", "THIRD_PARTY_NOTICES.txt"
     pkgshare.install "examples"
-    generate_completions_from_executable(bin/"dnscale", "completion", shells: [:bash, :zsh, :fish])
+    generate_completions_from_executable(bin/"dnscale", "completion")
   end
 
   test do
     assert_match "dnscale version #{version}", shell_output("#{bin}/dnscale --version")
     result = JSON.parse(shell_output("#{bin}/dnscale records create example.com " \
-                                    "--file #{pkgshare}/examples/record.json --dry-run --json"))
+                                     "--file #{pkgshare}/examples/record.json --dry-run --json"))
     data = result.fetch("data")
     assert_equal true, data.fetch("valid")
     assert_equal false, data.fetch("submitted")
