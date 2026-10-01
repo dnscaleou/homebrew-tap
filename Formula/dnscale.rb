@@ -1,7 +1,6 @@
 class Dnscale < Formula
   desc "Manage DNS zones and records, inspect DNSSEC, and read usage"
   homepage "https://github.com/dnscaleou/dnscale-cli"
-  version "1.0.0"
   license "MIT"
 
   on_macos do
